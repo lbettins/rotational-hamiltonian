@@ -1,0 +1,18 @@
+#!/bin/bash
+#SBATCH --job-name=propmfi2.job
+#SBATCH --time=24:00:00
+#SBATCH --partition=mhg
+#SBATCH --account=mhg
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=32
+#SBATCH --output=sample.o%j
+#SBATCH --error=sample.o%j
+
+source $HOME/.qcimproved
+conda activate $SCRATCH/deathstar4
+chmod +x $SCRATCH/spherical_schrodinger/main.py
+$SCRATCH/spherical_schrodinger/main.py PROP2-MFI-freq.out -n 32 -T 298 -nads 11 -ncirc 25
+#-dry 1
+
+#qchem -nt 32 sample.qcin sample.q.out
+#rm -r $QCSCRATCH/nuts_output.o$SLURM_JOBID
