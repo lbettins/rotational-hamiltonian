@@ -1,0 +1,192 @@
+Running on 1 threads
+Printing I:
+3.20708	3.2267	3.30455	Directory is: /global/scratch/lbettins/rotational-hamiltonian/data/METH-CHA
+Lmax = 10
+Dimensions of the matrix: 1771
+kappa val is 8.7039.
+
+NOT HERMITIAN, CHECK
+0.000943711
+
+Q predicted by eig_sym: 402.134
+Rotational constants / Hartree:
+2.38042e-05	2.32434e-05	2.39498e-05	
+kB T / Hartree:
+0.000943711
+Qapprox = 450.882
+
+
+74.6273 secs
+
+real	1m14.874s
+user	1m13.789s
+sys	0m0.775s
+
+Running on 2 threads
+Printing I:
+3.20708	3.2267	3.30455	Directory is: /global/scratch/lbettins/rotational-hamiltonian/data/METH-CHA
+Lmax = 10
+Dimensions of the matrix: 1771
+kappa val is 8.7039.
+
+NOT HERMITIAN, CHECK
+0.000943711
+
+Q predicted by eig_sym: 402.134
+Rotational constants / Hartree:
+2.38042e-05	2.32434e-05	2.39498e-05	
+kB T / Hartree:
+0.000943711
+Qapprox = 450.882
+
+
+61.3283 secs
+
+real	1m1.415s
+user	1m0.640s
+sys	0m0.620s
+
+Running on 3 threads
+Printing I:
+3.20708	3.2267	3.30455	Directory is: /global/scratch/lbettins/rotational-hamiltonian/data/METH-CHA
+Lmax = 10
+Dimensions of the matrix: 1771
+kappa val is 8.7039.
+
+NOT HERMITIAN, CHECK
+0.000943711
+
+Q predicted by eig_sym: 402.134
+Rotational constants / Hartree:
+2.38042e-05	2.32434e-05	2.39498e-05	
+kB T / Hartree:
+0.000943711
+Qapprox = 450.882
+
+
+61.707 secs
+
+real	1m1.791s
+user	1m0.842s
+sys	0m0.781s
+
+Running on 4 threads
+Printing I:
+3.20708	3.2267	3.30455	Directory is: /global/scratch/lbettins/rotational-hamiltonian/data/METH-CHA
+Lmax = 10
+Dimensions of the matrix: 1771
+kappa val is 8.7039.
+
+NOT HERMITIAN, CHECK
+0.000943711
+
+Q predicted by eig_sym: 402.134
+Rotational constants / Hartree:
+2.38042e-05	2.32434e-05	2.39498e-05	
+kB T / Hartree:
+0.000943711
+Qapprox = 450.882
+
+
+77.2883 secs
+
+real	1m17.378s
+user	1m16.301s
+sys	0m0.916s
+
+Running on 5 threads
+Printing I:
+3.20708	3.2267	3.30455	Directory is: /global/scratch/lbettins/rotational-hamiltonian/data/METH-CHA
+Lmax = 10
+Dimensions of the matrix: 1771
+kappa val is 8.7039.
+
+NOT HERMITIAN, CHECK
+0.000943711
+
+Q predicted by eig_sym: 402.134
+Rotational constants / Hartree:
+2.38042e-05	2.32434e-05	2.39498e-05	
+kB T / Hartree:
+0.000943711
+Qapprox = 450.882
+
+
+76.565 secs
+
+real	1m16.650s
+user	1m15.579s
+sys	0m0.915s
+
+Running on 6 threads
+Printing I:
+3.20708	3.2267	3.30455	Directory is: /global/scratch/lbettins/rotational-hamiltonian/data/METH-CHA
+Lmax = 10
+Dimensions of the matrix: 1771
+kappa val is 8.7039.
+
+NOT HERMITIAN, CHECK
+0.000943711
+
+Q predicted by eig_sym: 402.134
+Rotational constants / Hartree:
+2.38042e-05	2.32434e-05	2.39498e-05	
+kB T / Hartree:
+0.000943711
+Qapprox = 450.882
+
+
+80.1328 secs
+
+real	1m20.217s
+user	1m19.062s
+sys	0m0.991s
+
+Running on 7 threads
+Printing I:
+3.20708	3.2267	3.30455	Directory is: /global/scratch/lbettins/rotational-hamiltonian/data/METH-CHA
+Lmax = 10
+Dimensions of the matrix: 1771
+kappa val is 8.7039.
+
+NOT HERMITIAN, CHECK
+0.000943711
+
+Q predicted by eig_sym: 402.134
+Rotational constants / Hartree:
+2.38042e-05	2.32434e-05	2.39498e-05	
+kB T / Hartree:
+0.000943711
+Qapprox = 450.882
+
+
+66.7297 secs
+
+real	1m6.816s
+user	1m5.872s
+sys	0m0.785s
+
+Running on 8 threads
+Printing I:
+3.20708	3.2267	3.30455	Directory is: /global/scratch/lbettins/rotational-hamiltonian/data/METH-CHA
+Lmax = 10
+Dimensions of the matrix: 1771
+kappa val is 8.7039.
+
+NOT HERMITIAN, CHECK
+0.000943711
+
+Q predicted by eig_sym: 402.134
+Rotational constants / Hartree:
+2.38042e-05	2.32434e-05	2.39498e-05	
+kB T / Hartree:
+0.000943711
+Qapprox = 450.882
+
+
+37.8096 secs
+
+real	0m37.896s
+user	0m37.372s
+sys	0m0.313s
+

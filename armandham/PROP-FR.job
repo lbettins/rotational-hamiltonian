@@ -1,0 +1,13 @@
+#!/bin/bash
+#SBATCH --job-name=prop-fr.job
+#SBATCH --time=48:00:00
+#SBATCH --partition=mhg
+#SBATCH --account=mhg
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=32
+#SBATCH --mem-per-cpu=12G
+#SBATCH --output=prop-fr-ham.o
+#SBATCH --error=prop-fr-ham.o
+
+source ~/.armhamrc
+./ham PROP1-MFI 40

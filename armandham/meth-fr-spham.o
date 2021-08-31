@@ -1,0 +1,57 @@
+Printing I:
+3.20708	3.2267	3.30455	Directory is: /global/scratch/lbettins/rotational-hamiltonian/data/METH-CHA
+Rotational constants / Hartree:
+2.38042e-05	2.32434e-05	2.39498e-05	
+kB T / Hartree:
+0.000943711
+Qapprox = 450.882
+Lmax		Q		Time		dQ		Memory
+1		8.5626		0.015294 sec.		8.5626
+2		29.9514		0.008535 sec.		21.3888
+3		66.2907		0.002969 sec.		36.3393
+4		115.508		0.013084 sec.		49.2177
+
+warning: eigs_sym(): given matrix is not symmetric
+5		172.82		0.029405 sec.		57.3115
+
+warning: eigs_sym(): given matrix is not symmetric
+6		232.185		0.099806 sec.		59.365
+
+warning: eigs_sym(): given matrix is not symmetric
+7		288.351		0.380697 sec.		56.1663
+
+warning: eigs_sym(): given matrix is not symmetric
+8		336.437		1.24595 sec.		48.0862
+
+warning: eigs_sym(): given matrix is not symmetric
+9		374.802		4.25133 sec.		38.3642
+
+warning: eigs_sym(): given matrix is not symmetric
+10		403.281		9.28388 sec.		28.4791
+
+warning: eigs_sym(): given matrix is not symmetric
+11		423.032		20.635 sec.		19.7509
+
+warning: eigs_sym(): given matrix is not symmetric
+12		435.868		42.6408 sec.		12.8361
+
+warning: eigs_sym(): given matrix is not symmetric
+13		443.703		82.3717 sec.		7.83574
+
+warning: eigs_sym(): given matrix is not symmetric
+14		448.205		282.801 sec.		4.50125
+
+warning: eigs_sym(): given matrix is not symmetric
+15		450.641		281.825 sec.		2.43686
+
+warning: eigs_sym(): given matrix is not symmetric
+16		451.886		485.816 sec.		1.24479
+
+warning: eigs_sym(): given matrix is not symmetric
+17		452.487		824.983 sec.		0.600563
+
+warning: eigs_sym(): given matrix is not symmetric
+18		452.761		1307.21 sec.		0.273885
+
+warning: eigs_sym(): given matrix is not symmetric
+slurmstepd: error: *** JOB 39503678 ON n0053.mhg0 CANCELLED AT 2021-08-31T09:26:14 ***

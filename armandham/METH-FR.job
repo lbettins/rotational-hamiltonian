@@ -1,0 +1,12 @@
+#!/bin/bash
+#SBATCH --job-name=meth-fr.job
+#SBATCH --time=48:00:00
+#SBATCH --partition=mhg
+#SBATCH --account=mhg
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=64
+#SBATCH --output=testing-meth-eigsym.o
+#SBATCH --error=testing-meth-eigsym.o
+
+source ~/.armhamrc
+./ham METH-CHA 1

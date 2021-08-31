@@ -1,0 +1,52 @@
+#!/bin/bash
+#SBATCH --job-name=meth-fr.job
+#SBATCH --time=48:00:00
+#SBATCH --partition=mhg
+#SBATCH --account=mhg
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=64
+#SBATCH --cpus-per-task=1
+#SBATCH --output=meth-fr-ham.o_64nt-64ntpn
+#SBATCH --error=meth-fr-ham.o_64nt-64ntpn
+
+source ~/.armhamrc
+
+export OPENBLAS_NUM_THREADS=1
+echo 'Running on' $OPENBLAS_NUM_THREADS 'threads'
+time ./ham
+echo ''
+ 
+export OPENBLAS_NUM_THREADS=2
+echo 'Running on' $OPENBLAS_NUM_THREADS 'threads'
+time ./ham
+echo ''
+ 
+export OPENBLAS_NUM_THREADS=3
+echo 'Running on' $OPENBLAS_NUM_THREADS 'threads'
+time ./ham
+echo ''
+ 
+export OPENBLAS_NUM_THREADS=4
+echo 'Running on' $OPENBLAS_NUM_THREADS 'threads'
+time ./ham
+echo ''
+ 
+export OPENBLAS_NUM_THREADS=5
+echo 'Running on' $OPENBLAS_NUM_THREADS 'threads'
+time ./ham
+echo ''
+ 
+export OPENBLAS_NUM_THREADS=6
+echo 'Running on' $OPENBLAS_NUM_THREADS 'threads'
+time ./ham
+echo ''
+ 
+export OPENBLAS_NUM_THREADS=7
+echo 'Running on' $OPENBLAS_NUM_THREADS 'threads'
+time ./ham
+echo ''
+ 
+export OPENBLAS_NUM_THREADS=8
+echo 'Running on' $OPENBLAS_NUM_THREADS 'threads'
+time ./ham
+echo ''

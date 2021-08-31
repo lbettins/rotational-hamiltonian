@@ -1,0 +1,19 @@
+Printing I:
+3.20708	3.2267	3.30455	Directory is: /global/scratch/lbettins/rotational-hamiltonian/data/METH-CHA
+Rotational constants / Hartree:
+2.38042e-05	2.32434e-05	2.39498e-05	
+kB T / Hartree:
+0.000943711
+Qapprox = 450.882
+Lmax		Q		Time
+22		450.446		222.553 sec.		450.446
+23		451.448		304.151 sec.		1.00216
+24		450.449		475.093 sec.		0.999293
+25		450.449		673.675 sec.		0.000218729
+DeltaQ = 0.000218729
+Convergence criterion met!
+Lmax = 25
+
+
+
+1676.43 secs

@@ -1,0 +1,10 @@
+Printing I:
+17.1692	60.057	67.5948	Directory is: /global/scratch/lbettins/rotational-hamiltonian/data/PROP1-MFI
+Rotational constants / Hartree:
+1.27893e-06	1.13632e-06	4.47365e-06	
+kB T / Hartree:
+0.000943711
+Qapprox = 20355.7
+Lmax		Q		Time		dQ		Memory
+
+warning: eigs_sym(): given matrix is not symmetric
