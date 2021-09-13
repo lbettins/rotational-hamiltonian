@@ -1,0 +1,11 @@
+Printing I:
+6.40718	25.1095	25.1825	Directory is: /global/scratch/lbettins/rotational-hamiltonian/data/ETH1-CHA
+kB T / Hartree:
+0.000943711
+Qapprox = 4907.67
+Lmax		Q		Time		dQ
+40		4842.81		10461.7 sec.		4842.81
+41		4848.57		12919.6 sec.		5.75839
+42		4853.06		37610.8 sec.		4.49391
+43		4856.55		71705.3 sec.		3.48255
+slurmstepd: error: *** JOB 41020238 ON n0084.mhg0 CANCELLED AT 2021-09-13T08:17:03 DUE TO TIME LIMIT ***

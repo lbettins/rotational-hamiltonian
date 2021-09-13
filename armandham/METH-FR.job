@@ -5,8 +5,8 @@
 #SBATCH --account=mhg
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=64
-#SBATCH --output=testing-meth-eigsym.o
-#SBATCH --error=testing-meth-eigsym.o
+#SBATCH --output=lower-tri-mem.o
+#SBATCH --error=lower-tri-mem.o
 
 source ~/.armhamrc
-./ham METH-CHA 1
+./ham METH-CHA 20 1

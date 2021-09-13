@@ -4,10 +4,10 @@
 #SBATCH --partition=mhg
 #SBATCH --account=mhg
 #SBATCH --nodes=1
-#SBATCH --ntasks-per-node=32
-#SBATCH --mem-per-cpu=12G
+#SBATCH --mem=256G
+#SBATCH --ntasks-per-node=64
 #SBATCH --output=prop-fr-ham.o
 #SBATCH --error=prop-fr-ham.o
 
 source ~/.armhamrc
-./ham PROP1-MFI 40
+./ham PROP1-MFI 50 1

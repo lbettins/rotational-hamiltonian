@@ -1,0 +1,4 @@
+Directory containing data is: /global/scratch/lbettins/rotational-hamiltonian/data/ETH1-CHA
+Moments of Inertia:
+6.40718	25.1095	25.1825	Qapprox = 4907.67
+Lmax		Q		Mat Constr. Time		Diag. Time		Total Time		dQ

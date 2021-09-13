@@ -1,0 +1,16 @@
+Printing I:
+6.40718	25.1095	25.1825	Directory is: /global/scratch/lbettins/rotational-hamiltonian/data/ETH1-CHA
+kB T / Hartree:
+0.000943711
+Qapprox = 4907.67
+Lmax		Q		Time		dQ
+24		4121.61		476.882 sec.		4121.61
+25		4235.04		621.09 sec.		113.431
+26		4334.69		842.466 sec.		99.646
+27		4421.53		1207.51 sec.		86.8412
+28		4496.62		1730.73 sec.		75.091
+Required Memory is 10.3622 Gb.
+Memory problem caused failure. Switching to sparse implementation.
+terminate called after throwing an instance of 'std::logic_error'
+  what():  arma::memory::acquire(): requested size is too large
+/var/spool/slurmd/job40776791/slurm_script: line 12: 42108 Aborted                 ./ham ETH1-CHA 24 1

@@ -1,14 +1,13 @@
 #!/bin/bash
 #SBATCH --job-name=eth-fr.job
-#SBATCH --time=48:00:00
+#SBATCH --time=148:00:00
 #SBATCH --partition=mhg
 #SBATCH --account=mhg
 #SBATCH --nodes=1
-#SBATCH --exclude=n0[000-036,041-101].mhg0
-#SBATCH --mem=512G
+#SBATCH --mem=256G
 #SBATCH --ntasks-per-node=64
 #SBATCH --output=eth-fr-mem4.o
 #SBATCH --error=eth-fr-mem4.o
 
 source ~/.armhamrc
-./ham ETH1-CHA 40 1
+./ham ETH1-CHA 48 1 298.15
