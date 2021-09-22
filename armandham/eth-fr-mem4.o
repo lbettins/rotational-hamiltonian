@@ -2,3 +2,5 @@ Directory containing data is: /global/scratch/lbettins/rotational-hamiltonian/da
 Moments of Inertia:
 6.40718	25.1095	25.1825	Qapprox = 4907.67
 Lmax		Q		Mat Constr. Time		Diag. Time		Total Time		dQ
+/var/spool/slurmd/job41557821/slurm_script: line 13: 53212 Killed                  ./ham ETH1-CHA 48 1 298.15
+slurmstepd: error: Detected 1 oom-kill event(s) in step 41557821.batch cgroup. Some of your processes may have been killed by the cgroup out-of-memory handler.

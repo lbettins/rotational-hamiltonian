@@ -1,0 +1,20 @@
+Directory containing data is: /global/scratch/lbettins/rotational-hamiltonian/data/METH-CHA
+Symmetry number for system METH-CHA is 3.
+Expansion series has an LMax of 0.
+Moments of Inertia:
+3.20708	3.2267	3.30455	
+Qapprox = 150.294
+Lmax		Q		Mat Constr. Time		Diag. Time		Total Time		dQ
+20		146.097		1.85552		262.465		264.321 sec.		146.097
+21		146.101		2.38484		329.219		331.604 sec.		0.00475294
+22		146.103		3.24174		423.281		426.522 sec.		0.00169718
+23		146.104		3.89261		550.617		554.509 sec.		0.000573709
+24		146.104		5.23549		702.287		707.523 sec.		0.000183656
+25		146.104		6.43584		911.729		918.165 sec.		5.56925e-05
+DeltaQ = 5.56925e-05
+Convergence criterion met!
+Lmax = 25
+
+
+
+3202.66 secs

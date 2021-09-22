@@ -1,13 +1,13 @@
 #!/bin/bash
-#SBATCH --job-name=meth-fr.job
+#SBATCH --job-name=meth74-ads.job
 #SBATCH --time=48:00:00
 #SBATCH --partition=mhg
 #SBATCH --account=mhg
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=64
 #SBATCH --mem=256G
-#SBATCH --output=meth-fr-finaltest.o
-#SBATCH --error=meth-fr-finaltest.o
+#SBATCH --output=meth74-ads-FINAL.o
+#SBATCH --error=meth74-ads-FINAL.o
 
 source ~/.armhamrc
-./ham METH-CHA 20 1 298.15
+./ham METH74-CHA 0 0 298.15

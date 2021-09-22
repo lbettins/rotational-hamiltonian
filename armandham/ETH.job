@@ -4,7 +4,7 @@
 #SBATCH --partition=mhg
 #SBATCH --account=mhg
 #SBATCH --nodes=1
-#SBATCH --mem=256G
+#SBATCH --mem=512G
 #SBATCH --ntasks-per-node=64
 #SBATCH --output=eth-fr-mem4.o
 #SBATCH --error=eth-fr-mem4.o
