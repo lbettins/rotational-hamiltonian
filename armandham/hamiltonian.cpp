@@ -163,11 +163,12 @@ vector<double> getThermo(double T, Col<double>& eigvals, double sym) {
         Q += exp(-b*e);
     }
     U /= Q;
+    Q /= sym;
     double F = -pow(b, -1) * log(Q);
     double S = (U-F)/T;
     U *= HARTREE2KCALMOL;
     S *= HARTREE2KCALMOL*1000;
-    vector<double> v {double(Q/sym), U, S};
+    vector<double> v {Q, U, S};
     return v;
 }
 
@@ -211,18 +212,21 @@ Mat<complex<double>> getHamiltonian(int lmax, double Ix, double Iy, double Iz, v
                                     double sign = pow(-1.0, mm+kk);
                                     for (int L = 0; L < seriesLmax+1; L++) {
                                         for (int M = -L; M <= L; M++) {
-                                            double Wlm = WignerSymbols::wigner3j_f(L,el,ell,M,m,-mm);
+                                            double Wlm = WignerSymbols::wigner3j(L,el,ell,M,m,-mm);
                                             for (int K = -L; K <= L; K++) {
                                                 if (Wlm == 0) {
                                                     ind++;
                                                     continue;
                                                 }
-                                                double Wlk = WignerSymbols::wigner3j_f(L,el,ell,K,k,-kk);
+                                                double Wlk = WignerSymbols::wigner3j(L,el,ell,K,k,-kk);
                                                 double val = 8*M_PI*M_PI*sign*Wlm*Wlk;
                                                 Vij += a.at(ind) * val;
                                                 ind++;
                                             }
                                         }
+                                    }
+                                    if (ind != a.size()) {
+                                        cout << "LOOP ABORTED BEFORE END OF ARRAY" << endl;
                                     }
                                 }
                                 // Solve the Kinetic Component resulting from raising and lowering operators
