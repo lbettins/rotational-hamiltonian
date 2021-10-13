@@ -35,7 +35,7 @@ double getSymNum(string sysname);
 int getExpansionLmax(string sysname, bool freeRotor);
 string getDirectory(string sysname);
 Col<double> getEnergyEigvals(Mat<complex<double>>& H);
-vector<double> getThermo(double T, Col<double>& eigvals, double sym=1);
+vector<double> getThermo(double T, Col<double>& eigvals, double sym=1, double refE=0);
 //double getPartitionFunction(double T, Mat<complex<double>>& H, double sym=1);
 double getSparseQ(double T, SpMat<double>& H, int sym=1);
 
@@ -53,10 +53,13 @@ int main(int argc, char** argv) {
     /* Extract molecular information */
     string sysname = argv[1];
     bool freeRotor = stoi(argv[3]);
+    cout << "bool freeRotor = " << freeRotor << endl;
     double T = stod(argv[4]);
     string dirname = getDirectory(sysname);
     cout << "Directory containing data is: " << dirname << endl;
     vector<complex<double>> a = getWignerCoeffs(sysname, freeRotor);
+    double refE = a.at(0).real();
+    cout << "Using reference energy of lowest coefficient: " << refE << endl;
     double sigma = getSymNum(sysname);
     int seriesLmax = getExpansionLmax(sysname, freeRotor);
     cout << "Symmetry number for system " << sysname << " is " <<  sigma << '.' << endl;
@@ -86,11 +89,15 @@ int main(int argc, char** argv) {
     bool dense = true;
     int lmax = atoi(argv[2]);
     double Q;
+    double ZPE;
     double U;
     double S;
     double Qprev = 0;
+    double Uprev = 0;
+    double Sprev = 0;
     vector<double> thermo;
-    cout << left << setw(15) << "Lmax" << setw(15) << "Q" << setw(15) << "U [kcal/mol]" << setw(15) << "S [cal/mol.K]" << setw(20) <<
+    cout << left << setw(15) << "Lmax" << setw(15) << "Q" << setw(15) << "ZPE [Hartree]" << setw(15) << 
+        "U [kcal/mol]" << setw(15) << "S [cal/mol.K]" << setw(20) <<
         "Constr.Time [s]" << setw(16) << "Diag.Time [s]" << setw(16) << "Time [s]" << setw(16) << "dQ" << endl;
     auto start = chrono::high_resolution_clock::now();
     auto qmid = chrono::high_resolution_clock::now();
@@ -106,10 +113,11 @@ int main(int argc, char** argv) {
             }
             //Q = getPartitionFunction(T, H, sigma);
             Col<double> eigvals = getEnergyEigvals(H);
-            thermo = getThermo(T, eigvals, sigma);
+            thermo = getThermo(T, eigvals, sigma, refE);
             Q = thermo[0];
-            U = thermo[1];
-            S = thermo[2];
+            ZPE = thermo[1];
+            U = thermo[2];
+            S = thermo[3];
         } else {
             /****  Sparse Matrix Implementation  ****/
             SpMat<double> H = getSparseHam(lmax, Ivec[0], Ivec[1], Ivec[2], a);
@@ -120,10 +128,13 @@ int main(int argc, char** argv) {
         auto qdiagDur = chrono::duration_cast<chrono::microseconds>(qend - qmid);
         auto qduration = chrono::duration_cast<chrono::microseconds>(qend - qstart);
         double dQ = fabs(Q-Qprev);
-        cout << left << setw(15) << lmax << setw(15) << Q << setw(15) << U << setw(15) << S << setw(20) << qmatDur.count()/1e6 << setw(16) 
+        double dU = fabs(U-Uprev);
+        double dS = fabs(S-Sprev);
+        cout << left << setw(15) << lmax << setw(15) << Q << setw(15) << ZPE << setw(15) 
+            << U << setw(15) << S << setw(20) << qmatDur.count()/1e6 << setw(16) 
             << qdiagDur.count()/1e6 << setw(16) <<
             qduration.count()/1e6 << setw(16) << dQ << endl;
-        if (dQ < 1e-5 && lmax > 20) {
+        if (dQ < 1e-4 && dS < 1e-2 && dU < 1e-3) {
             converge = true;
             cout << "DeltaQ = " << fabs(Q-Qprev) << endl;
             cout << "Convergence criterion met!" << endl;
@@ -131,6 +142,8 @@ int main(int argc, char** argv) {
         }
         lmax++;
         Qprev = Q;
+        Sprev = S;
+        Uprev = U;
     } while (!converge);
     cout << endl;
     cout << endl;
@@ -141,11 +154,24 @@ int main(int argc, char** argv) {
 }
 
 Col<double> getEnergyEigvals(Mat<complex<double>>& H) {
-    Col<double> eigvals = eig_sym(H);
+    Col<double> eigvals;
+    Mat<complex<double>> eigvec;
+    //Col<double> eigvals = eig_sym(H);
+    eig_sym(eigvals, eigvec, H);
+    //for (int i = 0; i < eigvec.n_cols; i++) {
+    //    complex<double> result (0,0);
+    //    for (int j = 0;  j < eigvec.n_rows; j++) {
+    //        complex<double> c = eigvec(i,j);
+    //        complex<double> c2 = abs(c*c);
+    //        result += c2;
+    //    }
+    //    cout << endl << "Result: " << result << endl;
+    //}
+    ////eigvec.print();
     return eigvals;
 }
 
-vector<double> getThermo(double T, Col<double>& eigvals, double sym) {
+vector<double> getThermo(double T, Col<double>& eigvals, double sym, double refE) {
     /* Solve the relevant thermodynamics 
      * Inputs:  T;          the temperature [=] K
      *          eigvals;    the energy microstates
@@ -159,16 +185,19 @@ vector<double> getThermo(double T, Col<double>& eigvals, double sym) {
     double Q = 0;
     double U = 0;
     for (double e : eigvals) {
-        U += e*exp(-b*e);
-        Q += exp(-b*e);
+        double E = e - refE;
+        U += E*exp(-b*E);
+        Q += exp(-b*E);
     }
     U /= Q;
     Q /= sym;
     double F = -pow(b, -1) * log(Q);
     double S = (U-F)/T;
+    //double ZPE = HARTREE2KCALMOL*eigvals[0];
+    double ZPE = eigvals[0];
     U *= HARTREE2KCALMOL;
     S *= HARTREE2KCALMOL*1000;
-    vector<double> v {Q, U, S};
+    vector<double> v {Q, ZPE, U, S};
     return v;
 }
 
@@ -187,10 +216,10 @@ Mat<complex<double>> getHamiltonian(int lmax, double Ix, double Iy, double Iz, v
     double A = HBAR1*HBAR2/(2.0*Iy);
     double C = HBAR1*HBAR2/(2.0*Ix);
     double kap = (A == B && A == C) ? 0 : (2.0*B - (A+C)) / (A-C);
-    #pragma omp parallel
+    //#pragma omp parallel
     {
         unsigned long long i = 0;
-        #pragma omp for
+        //#pragma omp for
         for (int el = 0; el < lmax+1; el++) {
             for (int m = -el; m <= el; m++) {
                 for (int k = -el; k <= el; k++) {
@@ -205,7 +234,7 @@ Mat<complex<double>> getHamiltonian(int lmax, double Ix, double Iy, double Iz, v
                                     continue;
                                 }
                                 complex<double> Vij (0,0);
-                                if (seriesLmax) {
+                                if (seriesLmax != 0) {
                                     // Solve Potential Component of Matrix by
                                     // iterating over Clebsch-Gordan coefficients (if applicable)
                                     int ind = 0;
@@ -220,6 +249,8 @@ Mat<complex<double>> getHamiltonian(int lmax, double Ix, double Iy, double Iz, v
                                                 }
                                                 double Wlk = WignerSymbols::wigner3j(L,el,ell,K,k,-kk);
                                                 double val = 8*M_PI*M_PI*sign*Wlm*Wlk;
+                                                //double val = sign*Wlm*Wlk;
+                                                //double val = sign*Wlm*Wlk;
                                                 Vij += a.at(ind) * val;
                                                 ind++;
                                             }
@@ -283,7 +314,8 @@ vector<complex<double>> getWignerCoeffs(string sysname, bool freeRotor) {
         return a;
     }
     string dirname = getDirectory(sysname);
-    string filename = dirname+"/aimag.txt";
+    //string filename = dirname+"/aimag.txt";
+    string filename = dirname+"/a.txt";
     ifstream is(filename);
     complex<double> val;
     while (is) {
@@ -291,6 +323,9 @@ vector<complex<double>> getWignerCoeffs(string sysname, bool freeRotor) {
             break;
         }
         a.push_back(val);
+    }
+    for (complex<double> ai : a) {
+        cout << ai << endl;
     }
     return a;
 }
@@ -311,8 +346,8 @@ vector<double> getMomentOfInertia(string sysname) {
 }
 
 string getDirectory(string sysname) {
-    //string dirname = "/Users/lancebettinson/Thesis/umrr/code/hamiltonian-cpp/data";
-    string dirname = "/global/scratch/lbettins/rotational-hamiltonian/data";
+    string dirname = "/Users/lancebettinson/Thesis/umrr/code/hamiltonian-cpp/data";
+    //string dirname = "/global/scratch/lbettins/rotational-hamiltonian/data";
     if (sysname == "") {
         string sysname;
         cout << "Enter system name:" << endl;
