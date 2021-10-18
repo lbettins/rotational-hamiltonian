@@ -58,8 +58,9 @@ int main(int argc, char** argv) {
     string dirname = getDirectory(sysname);
     cout << "Directory containing data is: " << dirname << endl;
     vector<complex<double>> a = getWignerCoeffs(sysname, freeRotor);
-    double refE = a.at(0).real();
-    cout << "Using reference energy of lowest coefficient: " << refE << endl;
+    //double refE = a.at(0).real();
+    //cout << "Using reference energy of lowest coefficient: " << refE << endl;
+    double refE = 0;
     double sigma = getSymNum(sysname);
     int seriesLmax = getExpansionLmax(sysname, freeRotor);
     cout << "Symmetry number for system " << sysname << " is " <<  sigma << '.' << endl;
@@ -184,11 +185,26 @@ vector<double> getThermo(double T, Col<double>& eigvals, double sym, double refE
     double b = pow(kB * T, -1) * EHARTREE;
     double Q = 0;
     double U = 0;
+    double tab_count = 0;
+    char space;
+    ofstream efile;
+    efile.open("efile.txt");
     for (double e : eigvals) {
         double E = e - refE;
         U += E*exp(-b*E);
         Q += exp(-b*E);
+        if (tab_count > 9) {
+            space = '\n';
+            tab_count = 0;
+        } else {
+            space = '\t';
+            tab_count++;
+        }
+        efile << E << endl;
+        //cout << E*HARTREE2KCALMOL << space;
     }
+    efile.close();
+    //cout << endl;
     U /= Q;
     Q /= sym;
     double F = -pow(b, -1) * log(Q);
@@ -241,15 +257,17 @@ Mat<complex<double>> getHamiltonian(int lmax, double Ix, double Iy, double Iz, v
                                     double sign = pow(-1.0, mm+kk);
                                     for (int L = 0; L < seriesLmax+1; L++) {
                                         for (int M = -L; M <= L; M++) {
-                                            double Wlm = WignerSymbols::wigner3j(L,el,ell,M,m,-mm);
+                                            //double Wlm = WignerSymbols::wigner3j(L,el,ell,M,m,-mm);
+                                            double Wlm = WignerSymbols::wigner3j(el,L,ell,m,M,-mm);
                                             for (int K = -L; K <= L; K++) {
                                                 if (Wlm == 0) {
                                                     ind++;
                                                     continue;
                                                 }
-                                                double Wlk = WignerSymbols::wigner3j(L,el,ell,K,k,-kk);
-                                                double val = 8*M_PI*M_PI*sign*Wlm*Wlk;
-                                                //double val = sign*Wlm*Wlk;
+                                                //double Wlk = WignerSymbols::wigner3j(L,el,ell,K,k,-kk);
+                                                double Wlk = WignerSymbols::wigner3j(el,L,ell,k,K,-kk);
+                                                //double val = 8*M_PI*M_PI*sign*Wlm*Wlk;
+                                                double val = sqrt(2*ell+1)*sqrt(2*el+1)*sign*Wlm*Wlk;
                                                 //double val = sign*Wlm*Wlk;
                                                 Vij += a.at(ind) * val;
                                                 ind++;
