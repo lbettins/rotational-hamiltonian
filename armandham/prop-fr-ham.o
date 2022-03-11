@@ -1,8 +1,0 @@
-Printing I:
-17.1692	60.057	67.5948	Directory is: /global/scratch/lbettins/rotational-hamiltonian/data/PROP1-MFI
-kB T / Hartree:
-0.000943711
-Qapprox = 20355.7
-Lmax		Q		Time		dQ
-/var/spool/slurmd/job41158224/slurm_script: line 13:  1047 Killed                  ./ham PROP1-MFI 50 1
-slurmstepd: error: Detected 1 oom-kill event(s) in step 41158224.batch cgroup. Some of your processes may have been killed by the cgroup out-of-memory handler.
